@@ -1,53 +1,61 @@
-<form class="max-w-sm mx-auto">
-    <h1 class="text-2xl">Datos Personales</h1>
-    <div class="mb-5">
-      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre</label>
-      <input type="text" id="nombre" class="bg-black-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre" required />
-    </div>
-    <div class="mb-5">
-        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Apellido Paterno</label>
-        <input type="text" id="apellidoP" class="bg-black-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Apellido Paterno" required />
-    </div>
-    <div class="mb-5">
-        <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Apellido Materno</label>
-        <input type="text" id="apellidoM" class="bg-black-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Apellido Materno" required />
+<br>
+<div class="max-w-lg mx-auto p-6 bg-gray-200 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6 text-center">Signo Zodiacal Chino</h1>
+
+  <form [formGroup]="form" (ngSubmit)="imprimir()" class="space-y-4">
+    <div class="flex flex-col">
+      <label for="nombre" class="text-lg font-medium">Nombre:</label>
+      <input id="nombre" formControlName="nombre" type="text" placeholder="Nombre"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
     </div>
 
-    <h1 class="text-1xl">Fecha de Nacimiento</h1>
-    
-    <div class="grid md:grid-cols-3 md:gap-6">
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Dia</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="number" name="floating_company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Mes</label>
-        </div>
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Año</label>
-        </div>
-      </div>
-    <br>
-    
-    <h1 class="text-1xl">Sexo</h1>
+    <div class="flex flex-col">
+      <label for="apellidoP" class="text-lg font-medium">Apellido Paterno:</label>
+      <input id="apellidoP" formControlName="apellidoP" type="text" placeholder="Apellido Paterno"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+    </div>
 
-    <div class="flex items-center mb-4">
-        <input id="country-option-1" type="radio" name="countries" value="USA" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" checked>
-        <label for="country-option-1" class="block ms-2  text-sm font-medium text-gray-900 dark:text-black-300">
-          Masculino
-        </label>
-      </div>
-    
-      <div class="flex items-center mb-4">
-        <input id="country-option-2" type="radio" name="countries" value="Germany" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-        <label for="country-option-2" class="block ms-2 text-sm font-medium text-gray-900 dark:text-black-300">
-          Femenino
-        </label>
-      </div>
+    <div class="flex flex-col">
+      <label for="apellidoM" class="text-lg font-medium">Apellido Materno:</label>
+      <input id="apellidoM" formControlName="apellidoM" type="text" placeholder="Apellido Materno"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+    </div>
 
+    <div class="flex flex-col">
+      <label for="dia" class="text-lg font-medium">Día de Nacimiento:</label>
+      <input id="dia" formControlName="dia" type="number" placeholder="Día"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+    </div>
 
-    <button type="Imprimir" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Imprimir</button>
+    <div class="flex flex-col">
+      <label for="mes" class="text-lg font-medium">Mes de Nacimiento:</label>
+      <input id="mes" formControlName="mes" type="number" placeholder="Mes"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+    </div>
+
+    <div class="flex flex-col">
+      <label for="anio" class="text-lg font-medium">Año de Nacimiento:</label>
+      <input id="anio" formControlName="anio" type="number" placeholder="Año"
+             class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+    </div>
+
+    <button type="submit" class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-300">
+      Imprimir
+    </button>
   </form>
+
+  <div *ngIf="signoZodiacal" class="mt-6 p-4 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold">Información Personal:</h2>
+    <p class="mt-2"><strong>Nombre Completo:</strong> {{ form.get('nombre')?.value }} {{ form.get('apellidoP')?.value }} {{ form.get('apellidoM')?.value }}</p>
+    <p class="mt-2"><strong>Fecha de Nacimiento:</strong> {{ form.get('dia')?.value }}/{{ form.get('mes')?.value }}/{{ form.get('anio')?.value }}</p>
+    <p class="mt-2"><strong>Edad:</strong> {{ calcularEdad(form.get('dia')?.value, form.get('mes')?.value, form.get('anio')?.value) }} años</p>
+    <p class="mt-2"><strong>Signo Zodiacal Chino:</strong> {{ signoZodiacal }}</p>
   
+    <div class="mt-4">
+      <img [src]="imagenZodiacal" alt="{{ signoZodiacal }}" class="w-24 h-24 mx-auto">
+    </div>
+  </div>
+  
+</div>
+
+<!--Comentario-->
