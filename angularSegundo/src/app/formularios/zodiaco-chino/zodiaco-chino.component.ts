@@ -79,4 +79,4 @@ export default class ZodiacoChinoComponent {
   }
 }
 
-//Comentario
+//Entrega de codigo de Zodiaco atrasado (15 de Octubre) Completado
