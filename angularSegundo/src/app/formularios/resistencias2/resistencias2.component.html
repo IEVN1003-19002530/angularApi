@@ -1,0 +1,86 @@
+<br>
+<div class="flex justify-center">
+  <div class="p-6 bg-gray-100 rounded-lg shadow-lg w-full max-w-lg">
+    <h2 class="text-2xl mb-4 text-center font-semibold">Registro de Resistencias</h2>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-gray-700">Primera Banda</label>
+        <select [(ngModel)]="color1" class="w-full p-2 border rounded">
+          <option *ngFor="let color of colores" [ngValue]="color">{{ color }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Segunda Banda</label>
+        <select [(ngModel)]="color2" class="w-full p-2 border rounded">
+          <option *ngFor="let color of colores" [ngValue]="color">{{ color }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Tercera Banda</label>
+        <select [(ngModel)]="color3" class="w-full p-2 border rounded">
+          <option *ngFor="let color of colores" [ngValue]="color">{{ color }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700">Tolerancia</label>
+        <div class="flex items-center">
+          <label class="mr-4">
+            <input type="radio" [(ngModel)]="tolerancia" value="oro" />
+            Oro
+          </label>
+          <label>
+            <input type="radio" [(ngModel)]="tolerancia" value="plata" />
+            Plata
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="registrar()" class="bg-blue-500 text-white p-2 w-full rounded hover:bg-blue-700">
+      Registrar
+    </button>
+
+    <button (click)="toggleTabla()" class="bg-green-500 text-white p-2 w-full rounded hover:bg-green-700 mt-4">
+      Imprimir tabla
+    </button>
+  </div>
+</div>
+
+<!-- Tabla -->
+<div *ngIf="mostrarTabla" class="flex justify-center mt-10">
+  <table class="table-auto border-collapse bg-white shadow-lg">
+    <thead>
+      <tr>
+        <th class="px-4 py-2 border">Color 1</th>
+        <th class="px-4 py-2 border">Color 2</th>
+        <th class="px-4 py-2 border">Color 3</th>
+        <th class="px-4 py-2 border">Tolerancia</th>
+        <th class="px-4 py-2 border">Valor</th>
+        <th class="px-4 py-2 border">Valor Mínimo</th>
+        <th class="px-4 py-2 border">Valor Máximo</th>
+        <th class="px-4 py-2 border">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let res of resistencias; let i = index">
+        <td class="px-4 py-2 border" [style.background-color]="res.bgColor1">{{ res.color1 }}</td>
+        <td class="px-4 py-2 border" [style.background-color]="res.bgColor2">{{ res.color2 }}</td>
+        <td class="px-4 py-2 border" [style.background-color]="res.bgColor3">{{ res.color3 }}</td>
+        <td class="px-4 py-2 border">{{ res.tolerancia }}</td>
+        <td class="px-4 py-2 border">{{ res.valor }}</td>
+        <td class="px-4 py-2 border">{{ res.valorMin }}</td>
+        <td class="px-4 py-2 border">{{ res.valorMax }}</td>
+        <td class="px-4 py-2 border">
+          <button (click)="editar(i)" class="text-blue-600 hover:text-blue-800">Editar</button>
+          <button (click)="eliminar(i)" class="text-red-600 hover:text-red-800">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--ESTE NO JALA ASI QUE NO CUENTA XD-->
