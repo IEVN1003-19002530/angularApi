@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup ,ReactiveFormsModule } from '@angular/forms';
 
 interface Usuario{
@@ -16,9 +15,8 @@ interface Usuario{
   styles: ``
 })
 export default class Ejemplo1Component implements OnInit {
-
   formGroup!: FormGroup;
-
+  
   nombre:string='Ivan'
   persona:Usuario={
     nombre: '',

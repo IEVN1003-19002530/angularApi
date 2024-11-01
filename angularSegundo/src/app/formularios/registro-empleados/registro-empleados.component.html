@@ -1,0 +1,77 @@
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4 text-center">Registro de empleados</h1>
+  
+    <form [formGroup]="form" (ngSubmit)="registrar()" class="space-y-4 bg-white shadow-md rounded p-6 max-w-md mx-auto">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="matricula" class="block text-sm font-medium text-gray-700">Matrícula</label>
+          <input formControlName="matricula" type="text" id="matricula" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+  
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+          <input formControlName="nombre" type="text" id="nombre" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+  
+        <div>
+          <label for="correo" class="block text-sm font-medium text-gray-700">Correo</label>
+          <input formControlName="correo" type="email" id="correo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+  
+        <div>
+          <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
+          <input formControlName="edad" type="number" id="edad" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+  
+        <div>
+          <label for="horas" class="block text-sm font-medium text-gray-700">Horas trabajadas</label>
+          <input formControlName="horas" type="number" id="horas" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+      </div>
+  
+      <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 transition">Registrar</button>
+    </form>
+  
+    <div class="mt-8 max-w-4xl mx-auto">
+      <button (click)="imprimirTabla()" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 transition mb-4">Imprimir tabla</button>
+  
+      <table class="min-w-full bg-white shadow-md rounded">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="py-2 px-4 text-left">Matrícula</th>
+            <th class="py-2 px-4 text-left">Nombre</th>
+            <th class="py-2 px-4 text-left">Correo</th>
+            <th class="py-2 px-4 text-left">Edad</th>
+            <th class="py-2 px-4 text-left">Horas trabajadas</th>
+            <th class="py-2 px-4 text-left">Horas x Pagar</th>
+            <th class="py-2 px-4 text-left">Horas Extras</th>
+            <th class="py-2 px-4 text-left">Subtotal</th>
+            <th class="py-2 px-4 text-left">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleadosAMostrar" class="hover:bg-gray-100 transition">
+            <td class="py-2 px-4">{{ empleado.matricula }}</td>
+            <td class="py-2 px-4">{{ empleado.nombre }}</td>
+            <td class="py-2 px-4">{{ empleado.correo }}</td>
+            <td class="py-2 px-4">{{ empleado.edad }}</td>
+            <td class="py-2 px-4">{{ empleado.horas }}</td>
+            <td class="py-2 px-4">{{ empleado.horasPagar | currency:'MXN' }}</td>
+            <td class="py-2 px-4">{{ empleado.horasExtras | currency:'MXN' }}</td>
+            <td class="py-2 px-4">{{ empleado.subTotal | currency:'MXN' }}</td>
+            <td class="py-2 px-4 space-x-2">
+              <button (click)="modificar(empleado.matricula)" class="bg-yellow-400 text-white font-bold py-1 px-3 rounded hover:bg-yellow-500 transition">Editar</button>
+              <button (click)="eliminar(empleado.matricula)" class="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600 transition">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="bg-gray-200 font-bold">
+            <td colspan="8" class="py-2 px-4 text-right">Total a Pagar:</td>
+            <td class="py-2 px-4">{{ calcularTotal() | currency:'MXN' }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  
