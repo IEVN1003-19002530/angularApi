@@ -45,40 +45,45 @@ export default class Resistencias2Component {
     }
   }
 
-  // Registrar datos
-  registrar() {
-    const color1Data = this.operaycolor(this.color1);
-    const color2Data = this.operaycolor(this.color2);
-    const color3Data = this.operaycolor(this.color3);
+registrar() {
+  const color1Data = this.operaycolor(this.color1);
+  const color2Data = this.operaycolor(this.color2);
+  const color3Data = this.operaycolor(this.color3);
 
-    const valor = `${color1Data.num}${color2Data.num}${color3Data.num}`;
-    const valorMin = parseFloat((parseFloat(valor) * 0.95).toFixed(2));
-    const valorMax = parseFloat((parseFloat(valor) * 1.05).toFixed(2));
+  // Calcula el valor de la resistencia usando el tercer color como multiplicador
+  const baseValue = (color1Data.num * 10 + color2Data.num) * Math.pow(10, color3Data.num);
+  const toleranceFactor = this.tolerancia === 'oro' ? 0.05 : 0.1;
+  const toleranceText = this.tolerancia === 'oro' ? '5%' : '10%';
 
-    const resistencia = {
+  const valorMin = parseFloat((baseValue * (1 - toleranceFactor)).toFixed(2)) + ' Ω';
+  const valorMax = parseFloat((baseValue * (1 + toleranceFactor)).toFixed(2)) + ' Ω';
+  const valor = baseValue + ' Ω';
+
+  const resistencia = {
       color1: this.color1,
       color2: this.color2,
       color3: this.color3,
       bgColor1: color1Data.bgColor,
       bgColor2: color2Data.bgColor,
       bgColor3: color3Data.bgColor,
-      tolerancia: this.tolerancia,
+      tolerancia: toleranceText,
       valor,
       valorMin,
       valorMax
-    };
+  };
 
-    if (this.editIndex !== -1) {
+  if (this.editIndex !== -1) {
       this.resistencias[this.editIndex] = resistencia;
       this.editIndex = -1;
-    } else {
+  } else {
       this.resistencias.push(resistencia);
-    }
-
-    this.guardarLocalStorage();
-    this.limpiarFormulario();
-    this.mostrarTabla = false;
   }
+
+  this.guardarLocalStorage();
+  this.limpiarFormulario();
+  this.mostrarTabla = false;
+}
+
 
   cargarLocalStorage() {
     const datosGuardados = localStorage.getItem('resistencias');
@@ -116,5 +121,4 @@ export default class Resistencias2Component {
     this.mostrarTabla = !this.mostrarTabla;
   }
 }
-
-//TAMPOCO CUENTAAAA XDDDDDDDDDD
+//comentario para commit xd
